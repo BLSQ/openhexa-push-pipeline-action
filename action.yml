@@ -50,10 +50,5 @@ runs:
         node-version: '20'
 
     - name: Push pipeline to OpenHEXA
-      run: node dist/index.js
-      with:
-        pipeline: ${{ inputs.pipeline }}
-        path: ${{ inputs.path }}
-        versionName: ${{ inputs.versionName }}
-        versionDescription: ${{ inputs.versionDescription }}
-
+      run: node dist/index.js --pipeline ${{ inputs.pipeline }} --path ${{ inputs.path }} --versionName ${{ inputs.versionName }} --versionDescription ${{ inputs.versionDescription }}
+      shell: bash
