@@ -1,0 +1,35 @@
+name: 'OpenHEXA Push Pipeline'
+description: 'Push a pipeline to OpenHEXA'
+author: 'Bluesquare'
+
+inputs:
+  workspace:
+    description: 'Slug of the workspace to push to'
+    required: true
+  pipeline:
+    description: 'Code of the pipeline to push'
+    required: true
+  token:
+    description: 'Your OpenHEXA API token'
+    required: true
+  path:
+    description: 'Path to the pipeline file'
+    default: '.'
+    required: false
+  versionName:
+    description: 'Name of the pipeline version to create'
+    required: false
+  versionDescription:
+    description: 'Description of the pipeline version to create'
+    required: false
+  url:
+    description: 'OpenHEXA API URL'
+    required: false
+    default: 'https://api.openhexa.org'
+  openhexa_version:
+    description: 'OpenHEXA version to install'
+    required: false
+
+runs:
+  using: node20
+  main: dist/index.js
