@@ -31,5 +31,25 @@ inputs:
     required: false
 
 runs:
-  using: node20
-  main: dist/index.js
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v2
+
+    - name: Install OpenHEXA CLI
+      uses: blsq/openhexa-cli-action@v1
+      with:
+        workspace: ${{ inputs.workspace }}
+        token: ${{ inputs.token }}
+        url: ${{ inputs.url }}
+        openhexa_version: ${{ inputs.openhexa_version }}
+
+    - name: Push pipeline to OpenHEXA
+      using: node20
+      run: node dist/index.js
+      with:
+        pipeline: ${{ inputs.pipeline }}
+        path: ${{ inputs.path }}
+        versionName: ${{ inputs.versionName }}
+        versionDescription: ${{ inputs.versionDescription }}
+
