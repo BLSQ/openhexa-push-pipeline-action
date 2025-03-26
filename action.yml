@@ -44,8 +44,12 @@ runs:
         url: ${{ inputs.url }}
         openhexa_version: ${{ inputs.openhexa_version }}
 
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
     - name: Push pipeline to OpenHEXA
-      using: node20
       run: node dist/index.js
       with:
         pipeline: ${{ inputs.pipeline }}
