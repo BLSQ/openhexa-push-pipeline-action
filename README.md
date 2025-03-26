@@ -30,7 +30,7 @@ You can get this token in the OpenHEXA web interface on `https://app.openhexa.or
 
 You can also provide the following optional parameters:
 
-- `path`: The path to the pipeline file. Default is `.`.
-- `versionName`: The name of the version. Default is no name.
-- `versionDescription`: The description of the version. Default is no description.
+- `path`: The path to the pipeline file. Default is `.`
+- `versionName`: The name of the version. Default is no name
+- `versionDescription`: The description of the version. Default is no description
 
