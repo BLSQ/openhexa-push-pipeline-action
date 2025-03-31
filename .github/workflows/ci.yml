@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test-pushing-pipeline-to-openhexa-demo:
+    timeout-minutes: 2
+    name: Test Pushing Pipeline to OpenHEXA Demo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - name: Generate Version Info
+        id: version_info
+        run: |
+          DATE_TIME=$(date +'%Y-%m-%d %H:%M:%S')
+          echo "versionName=Version created on ${DATE_TIME}" >> $GITHUB_OUTPUT
+          echo "versionDescription=Description created on ${DATE_TIME}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Test Custom Action
+        uses: ./
+        with:
+          url: https://app.demo.openhexa.org/
+          token: ${{ secrets.OH_TOKEN }}
+          workspace: test
+          path: './tests'
+          pipeline: 'ci-pipeline'
+          versionName: ${{ steps.version_info.outputs.versionName }}
+          versionDescription: ${{ steps.version_info.outputs.versionDescription }}
