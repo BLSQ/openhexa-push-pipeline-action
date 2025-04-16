@@ -5,7 +5,7 @@ To use this action, you need to add the following step to your workflow:
 
 ```yaml
 - name: Push pipeline to OpenHEXA
-  uses: blsq/openhexa-push-pipeline-action@v1
+  uses: blsq/openhexa-push-pipeline-action@v1.0.0
   with:
     workspace: <insert-workspace-slug>
     pipeline: <insert-pipeline-code>
