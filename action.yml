@@ -47,11 +47,10 @@ runs:
     - name: Build Link
       id: build_link
       run: |
-        if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-          TAG_NAME=${GITHUB_REF#refs/tags/}
-          echo "link=https://github.com/${GITHUB_REPOSITORY}/releases/tag/${TAG_NAME}" >> $GITHUB_OUTPUT
+        if [[ "${{ github.ref_type }}" == "tag" ]]; then
+          echo "link=https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}" >> $GITHUB_OUTPUT
         else
-          echo "link=https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}" >> $GITHUB_OUTPUT
+          echo "link=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" >> $GITHUB_OUTPUT
         fi
       shell: bash
 
